@@ -20,7 +20,16 @@
   <packaging>jar</packaging>
 
   <name>primitivefxmvc</name>
+  <description>PFXMVC is a library which has a primitive MVC specifications and a couple of units which provide a quick start to a JavaFX project.</description>
   <url>http://github.com/erayerdin/primitivefxmvc</url>
+
+  <licenses>
+    <license>
+      <name>Apache License, Version 2.0</name>
+      <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+      <distribution>repo</distribution>
+    </license>
+  </licenses>
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
