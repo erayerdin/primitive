@@ -1,5 +1,6 @@
 package com.erayerdin.primitivefxmvc.views;
 
+import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -22,12 +23,12 @@ import java.io.IOException;
  * @see javafx.stage.Stage
  */
 public abstract class GenericView {
-    private static String baseDir;
-    private static Image globalIcon;
+    private static String baseDir = "views";
+    private static Image globalIcon = null;
 
     private String viewName;
     private StringProperty title;
-    private Image icon;
+    private Image icon = null;
     private int width = 0;
     private int height = 0;
     private boolean decorated = true;
@@ -35,7 +36,9 @@ public abstract class GenericView {
     private boolean modal = false;
     private boolean maximized = false;
 
-    public GenericView() {}
+    public GenericView() {
+        this.title = new SimpleStringProperty("JavaFX Application");
+    }
 
     /**
      * Generates a view path basing on viewName (object) and baseDir (static) properties.
@@ -91,6 +94,12 @@ public abstract class GenericView {
 
         if (!this.isDecorated()) stage.initStyle(StageStyle.UNDECORATED);
         if (this.isModal()) stage.initModality(Modality.APPLICATION_MODAL);
+
+        if (this.getIcon() != null)
+            stage.getIcons().add(this.getIcon());
+
+        if (this.getIcon() == null && GenericView.getGlobalIcon() != null)
+            stage.getIcons().add(GenericView.getGlobalIcon());
 
         return stage;
     }
