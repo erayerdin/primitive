@@ -1,12 +1,11 @@
 package com.erayerdin.primitivefxmvc.controllers;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import javafx.stage.Window;
-
-import java.awt.event.ActionEvent;
 
 /**
  * This is essential controller abstract-class for standard JavaFX controller class,

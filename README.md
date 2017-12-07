@@ -2,7 +2,7 @@
 
 ![](https://img.shields.io/badge/groupId-com.erayerdin-blue.svg?style=flat-square)
 ![](https://img.shields.io/badge/artifactId-primitivefxmvc-blue.svg?style=flat-square)
-![](https://img.shields.io/badge/version-0.1.0--alpha-red.svg?style=flat-square)
+![](https://img.shields.io/badge/version-0.1.2--alpha-red.svg?style=flat-square)
 [![](https://img.shields.io/badge/license-Apache2-333333.svg?style=flat-square)](LICENSE)
 
 PFXMVC is a library which has a primitive MVC specifications and
