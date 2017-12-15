@@ -35,6 +35,7 @@ public abstract class GenericView {
     private boolean resizable = true;
     private boolean modal = false;
     private boolean maximized = false;
+    private boolean fullscreen = false;
 
     public GenericView() {
         this.title = new SimpleStringProperty("JavaFX Application");
@@ -91,6 +92,7 @@ public abstract class GenericView {
 
         stage.setResizable(this.isResizable());
         stage.setMaximized(this.isMaximized());
+        stage.setFullScreen(this.isFullscreen());
 
         if (!this.isDecorated()) stage.initStyle(StageStyle.UNDECORATED);
         if (this.isModal()) stage.initModality(Modality.APPLICATION_MODAL);
@@ -194,5 +196,13 @@ public abstract class GenericView {
 
     public void setMaximized(boolean maximized) {
         this.maximized = maximized;
+    }
+
+    public boolean isFullscreen() {
+        return fullscreen;
+    }
+
+    public void setFullscreen(boolean fullscreen) {
+        this.fullscreen = fullscreen;
     }
 }
