@@ -6,6 +6,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
+import javafx.scene.input.KeyCombination;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
@@ -93,6 +94,7 @@ public abstract class GenericView {
         stage.setResizable(this.isResizable());
         stage.setMaximized(this.isMaximized());
         stage.setFullScreen(this.isFullscreen());
+        stage.setFullScreenExitKeyCombination(KeyCombination.NO_MATCH);
 
         if (!this.isDecorated()) stage.initStyle(StageStyle.UNDECORATED);
         if (this.isModal()) stage.initModality(Modality.APPLICATION_MODAL);
