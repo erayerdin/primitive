@@ -11,8 +11,8 @@ import java.io.*;
  * @see java.io.File
  */
 public interface SerializableModel extends Serializable, Externalizable {
-    void writeObject(ObjectOutputStream out);
-    void readObject(ObjectInputStream in);
+    void writeObject(ObjectOutputStream out) throws IOException;
+    void readObject(ObjectInputStream in) throws ClassNotFoundException, IOException;
 
     /**
      * A save method which saves the object that implements SerializableModel.

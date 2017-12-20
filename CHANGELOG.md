@@ -1,3 +1,6 @@
+# [2017-12-20] v0.1.5-alpha
+ - `SerializableModel.*Object` methods now throws `IOException` and `ClassNotFoundException`
+
 # [2017-12-20] v0.1.4-alpha
  - Fullscreen key combination set to no match
 
