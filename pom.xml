@@ -4,7 +4,7 @@
 
   <groupId>com.erayerdin</groupId>
   <artifactId>primitivefxmvc</artifactId>
-  <version>0.1.5-alpha</version>
+  <version>0.2.0-alpha</version>
   <build>
     <plugins>
       <plugin>
@@ -41,6 +41,13 @@
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
       <version>4.12</version>
+      <scope>test</scope>
+    </dependency>
+
+    <dependency>
+      <groupId>org.testfx</groupId>
+      <artifactId>testfx-junit</artifactId>
+      <version>4.0.10-alpha</version>
       <scope>test</scope>
     </dependency>
   </dependencies>
