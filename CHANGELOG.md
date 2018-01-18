@@ -1,6 +1,7 @@
 # [2018-01-18] v0.2.0-alpha
  - `GenericApplication` has been implemented.
  - `ExceptionAlert` has been implemented.
+ - Application data implementations in `getGlobalApplicationData`, `getUserApplicationData`, `getTemporaryApplicationData`.
 
 # [2017-12-20] v0.1.5-alpha
  - `SerializableModel.*Object` methods now throws `IOException` and `ClassNotFoundException`
