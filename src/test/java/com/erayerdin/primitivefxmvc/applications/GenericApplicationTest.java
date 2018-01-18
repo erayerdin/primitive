@@ -61,7 +61,8 @@ public class GenericApplicationTest {
         String osName = System.getProperty("os.name");
         if (osName.startsWith("Windows")) {
             String absPath = appdata.getAbsolutePath();
-            assertTrue(absPath.startsWith(homepath+"/AppData/Local/erayerdin/primitivefxmvc/"));
+            System.out.println("User App Data for Windows: "+absPath);
+            assertTrue(absPath.startsWith(homepath+"\\AppData\\Local\\erayerdin\\primitivefxmvc\\"));
         } else {
             String absPath = appdata.getAbsolutePath();
             assertTrue(absPath.startsWith(homepath+"/.local/share/erayerdin/primitivefxmvc/"));
@@ -75,7 +76,8 @@ public class GenericApplicationTest {
         String osName = System.getProperty("os.name");
         if (osName.startsWith("Windows")) {
             String absPath = appdata.getAbsolutePath();
-            assertTrue(absPath.startsWith("C:/ProgramData/erayerdin/pritimivefxmvc/"));
+            System.out.println("Global App Data for Windows: "+absPath);
+            assertTrue(absPath.startsWith("C:\\ProgramData\\erayerdin\\primitivefxmvc\\"));
         } else {
             String absPath = appdata.getAbsolutePath();
             assertTrue(absPath.startsWith("/usr/share/erayerdin/primitivefxmvc/"));
@@ -89,8 +91,11 @@ public class GenericApplicationTest {
         String osName = System.getProperty("os.name");
         if (osName.startsWith("Windows")) {
             String absPath = appdata.getAbsolutePath();
+            System.out.println("Temp Data for Windows: "+absPath);
             String homepath = System.getProperty("user.home");
-            assertTrue(absPath.startsWith(homepath+"/AppData/Local/Temp/erayerdin/primitivefxmvc"));
+            assertTrue(absPath.contains("\\AppData\\Local\\Temp\\primitivefxmvc"));
+            // Strangely, appdata's absolute path might return a tilde character
+            // in some cases, so this test has been changed to assertTrue
         } else {
             String absPath = appdata.getAbsolutePath();
             assertEquals("/tmp/primitivefxmvc", absPath);
