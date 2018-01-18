@@ -3,7 +3,14 @@ package com.erayerdin.primitivefxmvc.applications;
 import javafx.application.Application;
 import javafx.stage.Stage;
 
+/**
+ * A general purpose Application class which contains
+ * AppState and AppMeta.
+ */
 public abstract class GenericApplication extends Application {
+    /**
+     * AppState is the version state of Application.
+     */
     public static enum AppState {
         PREALPHA,
         ALPHA,
@@ -12,6 +19,10 @@ public abstract class GenericApplication extends Application {
         STABLE
     }
 
+    /**
+     * AppMeta consists of version info as well as
+     * several functions to generate version strings.
+     */
     public static class AppMeta {
         public static short MAJOR_VERSION = 0;
         public static short MINOR_VERSION = 1;

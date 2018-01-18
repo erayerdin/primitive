@@ -9,6 +9,14 @@ import javafx.scene.layout.Priority;
 import java.io.PrintWriter;
 import java.io.StringWriter;
 
+/**
+ * An Alert that is especially for any Throwable.
+ * Default AlertType is ERROR.
+ *
+ * @param <T> Any throwable
+ * @see java.lang.Throwable
+ * @see javafx.scene.control.Alert
+ */
 public class ExceptionAlert <T extends Throwable> extends Alert {
     private String stackTraceString;
     private T throwable;
