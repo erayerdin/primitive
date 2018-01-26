@@ -55,7 +55,7 @@ public class GenericApplicationTest {
 
     @Test
     public void getUserAppData() throws OperationSystemNotSupportedException {
-        File appdata = this.app.getUserApplicationData();
+        File appdata = GenericApplication.getUserApplicationData();
 
         String homepath = System.getProperty("user.home");
         String osName = System.getProperty("os.name");
@@ -71,7 +71,7 @@ public class GenericApplicationTest {
 
     @Test
     public void getGlobalAppData() throws OperationSystemNotSupportedException {
-        File appdata = this.app.getGlobalApplicationData();
+        File appdata = GenericApplication.getGlobalApplicationData();
 
         String osName = System.getProperty("os.name");
         if (osName.startsWith("Windows")) {
@@ -86,7 +86,7 @@ public class GenericApplicationTest {
 
     @Test
     public void getTempAppData() throws OperationSystemNotSupportedException {
-        File appdata = this.app.getTemporaryApplicationData();
+        File appdata = GenericApplication.getTemporaryApplicationData();
 
         String osName = System.getProperty("os.name");
         if (osName.startsWith("Windows")) {

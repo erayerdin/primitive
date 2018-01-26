@@ -1,3 +1,6 @@
+# [2018-01-27] v0.2.1-alpha
+ - Application data functions has been made static for `Generic Application`.
+
 # [2018-01-18] v0.2.0-alpha
  - `GenericApplication` has been implemented.
  - `ExceptionAlert` has been implemented.

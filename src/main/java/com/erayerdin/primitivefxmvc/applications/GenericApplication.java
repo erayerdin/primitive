@@ -106,7 +106,7 @@ public abstract class GenericApplication extends Application {
      * @throws OperationSystemNotSupportedException only support for Windows and Linux
      * @throws NullPointerException if AppMeta.PROJECT_NAME_CR was not defined
      */
-    public File getUserApplicationData() throws OperationSystemNotSupportedException {
+    public static File getUserApplicationData() throws OperationSystemNotSupportedException {
         File userHome = new File(System.getProperty("user.home"));
 
         String osName = System.getProperty("os.name");
@@ -140,7 +140,7 @@ public abstract class GenericApplication extends Application {
      * @throws OperationSystemNotSupportedException only support for Windows and Linux
      * @throws NullPointerException if AppMeta.PROJECT_NAME_CR was not defined
      */
-    public File getGlobalApplicationData() throws OperationSystemNotSupportedException {
+    public static File getGlobalApplicationData() throws OperationSystemNotSupportedException {
         String osName = System.getProperty("os.name");
 
         File root = null;
@@ -182,7 +182,7 @@ public abstract class GenericApplication extends Application {
      * @throws OperationSystemNotSupportedException only support for Windows and Linux
      * @throws NullPointerException if AppMeta.PROJECT_NAME_CR was not defined
      */
-    public File getTemporaryApplicationData() throws OperationSystemNotSupportedException {
+    public static File getTemporaryApplicationData() throws OperationSystemNotSupportedException {
         String osName = System.getProperty("os.name");
 
         File tempData = null;
