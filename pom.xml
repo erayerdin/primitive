@@ -2,9 +2,9 @@
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
-  <groupId>com.erayerdin</groupId>
-  <artifactId>primitivefxmvc</artifactId>
-  <version>0.2.1-alpha</version>
+  <groupId>io.github.erayerdin</groupId>
+  <artifactId>primitive</artifactId>
+  <version>0.5-alpha</version>
   <build>
     <plugins>
       <plugin>
@@ -19,8 +19,8 @@
   </build>
   <packaging>jar</packaging>
 
-  <name>primitivefxmvc</name>
-  <description>PFXMVC is a library which has a primitive MVC specifications and a couple of units which provide a quick start to a JavaFX project.</description>
+  <name>primitive</name>
+  <description>Primitive is a JavaFX framework which has a couple of features.</description>
   <url>http://github.com/erayerdin/primitivefxmvc</url>
 
   <licenses>
