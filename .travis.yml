@@ -1,0 +1,13 @@
+language: java
+install: true
+jobs:
+  include:
+  - stage: build
+    script: mvn clean compile -e -X
+  - stage: test
+    script: mvn clean test -e -X
+    after_success: mvn clean cobertura:cobertura coveralls:report -e -X
+cache:
+  directories:
+  - .autoconf
+  - $HOME/.m2
