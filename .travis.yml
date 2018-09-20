@@ -3,8 +3,16 @@ install: true
 jobs:
   include:
   - stage: build
+    before_install: sudo apt-get install -y xvfb
+    before_script:
+    - Xvfb :99 &>/dev/null &
+    - export DISPLAY=:99
     script: mvn clean compile -e -X
   - stage: test
+    before_install: sudo apt-get install -y xvfb
+    before_script:
+      - Xvfb :99 &>/dev/null &
+      - export DISPLAY=:99
     script: mvn clean test -e -X
     after_success: mvn clean cobertura:cobertura coveralls:report -e -X
 cache:
