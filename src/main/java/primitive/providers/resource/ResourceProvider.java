@@ -5,6 +5,7 @@ import primitive.providers.BaseProvider;
 import primitive.providers.meta.MetaProvider;
 import primitive.providers.os.OperatingSystemProvider;
 
+import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -124,18 +125,10 @@ public class ResourceProvider extends BaseProvider {
         return directory;
     }
 
-//    // todo doc
-//    public InputStream getClasspathResourceStream(String file) {
-//        return this.getClass().getClassLoader().getResourceAsStream(file);
-//    }
-//
-//    // todo doc
-//    public InputStream getApplicationDataResourceStream(String file, boolean isGlobal, boolean isVersionBased) {
-//        Path appDataPath = this.getApplicationDataDirectory(isGlobal, isVersionBased);
-//        Path filePath = Paths.get(appDataPath.toString(), file);
-//
-//
-//    }
+    // todo doc
+    public InputStream getClasspathResourceStream(String file) {
+        return this.getClass().getClassLoader().getResourceAsStream(file);
+    }
 
     @Override
     protected void init() {
