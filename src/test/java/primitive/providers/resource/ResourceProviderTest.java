@@ -6,11 +6,10 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-import java.io.BufferedReader;
-import java.io.InputStream;
-import java.io.InputStreamReader;
+import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.stream.Collectors;
 
 import static org.hamcrest.CoreMatchers.equalTo;
@@ -60,7 +59,8 @@ public class ResourceProviderTest {
     }
 
     @Test
-    public void testClassPathResourceStream() {
+    @TestInJfxThread
+    public void testClasspathResourceStream() throws IOException {
         InputStream stream = provider.getClasspathResourceStream("random.txt");
         InputStreamReader reader = new InputStreamReader(stream);
         BufferedReader buffer = new BufferedReader(reader);
@@ -69,5 +69,38 @@ public class ResourceProviderTest {
 
         assertThat(content.length() > 0, is(true));
         assertThat(content, is(equalTo("random")));
+
+        buffer.close();
+        reader.close();
+        stream.close();
+    }
+
+    @Test
+    @TestInJfxThread
+    public void testAppDataResourceStream() throws IOException {
+        // setup
+        Path randomFile = Paths.get(
+                provider.getLocalApplicationDataDirectory(false).toString(),
+                "random.txt"
+        );
+        PrintWriter writer = new PrintWriter(randomFile.toFile());
+        writer.print("random");
+        writer.close();
+
+        // test
+        InputStream stream = provider.getApplicationDataResourceStream("random.txt", false, false);
+        InputStreamReader reader = new InputStreamReader(stream);
+        BufferedReader buffer = new BufferedReader(reader);
+
+        String content = buffer.lines().collect(Collectors.joining("\n"));
+
+        assertThat(content.length() > 0, is(true));
+        assertThat(content, is(equalTo("random")));
+
+        // tear down
+        buffer.close();
+        reader.close();
+        stream.close();
+        Files.delete(randomFile);
     }
 }

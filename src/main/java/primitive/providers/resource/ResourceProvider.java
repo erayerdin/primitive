@@ -5,6 +5,8 @@ import primitive.providers.BaseProvider;
 import primitive.providers.meta.MetaProvider;
 import primitive.providers.os.OperatingSystemProvider;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -128,6 +130,16 @@ public class ResourceProvider extends BaseProvider {
     // todo doc
     public InputStream getClasspathResourceStream(String file) {
         return this.getClass().getClassLoader().getResourceAsStream(file);
+    }
+
+    // todo doc
+    public InputStream getApplicationDataResourceStream(String file, boolean isGlobal, boolean isVersionBased) throws FileNotFoundException {
+        Path path = Paths.get(
+                this.getApplicationDataDirectory(isGlobal, isVersionBased).toString(),
+                file
+        );
+
+        return new FileInputStream(path.toFile());
     }
 
     @Override
