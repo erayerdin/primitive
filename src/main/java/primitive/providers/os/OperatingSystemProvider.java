@@ -1,17 +1,30 @@
 package primitive.providers.os;
 
+import javafx.beans.property.ReadOnlyObjectProperty;
 import javafx.beans.property.ReadOnlyStringProperty;
+import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.concurrent.Task;
 import primitive.concurrent.BaseTask;
 import primitive.providers.BaseProvider;
 
-class OperatingSystemTask extends BaseTask<String[]> {
+class OperatingSystemTask extends BaseTask<Object[]> {
     @Override
-    protected String[] call() throws Exception {
-        String[] info = new String[3];
+    protected Object[] call() throws Exception {
+        Object[] info = new Object[3];
 
-        info[0] = System.getProperty("os.name");
+        String name = System.getProperty("os.name").toLowerCase();
+
+        if (name.contains("windows")) {
+            info[0] = OperatingSystem.WINDOWS;
+        } else if (name.contains("linux")) {
+            info[0] = OperatingSystem.LINUX;
+        } else if (name.contains("os x")) {
+            info[0] = OperatingSystem.OSX;
+        } else {
+            info[0] = OperatingSystem.OTHER;
+        }
+
         info[1] = System.getProperty("os.version");
         info[2] = System.getProperty("os.arch");
 
@@ -24,7 +37,7 @@ public class OperatingSystemProvider extends BaseProvider {
     // todo doc
     private volatile static OperatingSystemProvider instance;
 
-    private ReadOnlyStringProperty name;
+    private ReadOnlyObjectProperty<OperatingSystem> type;
     private ReadOnlyStringProperty version;
     private ReadOnlyStringProperty arch;
 
@@ -33,18 +46,18 @@ public class OperatingSystemProvider extends BaseProvider {
     }
 
     protected void init() {
-        this.name = new SimpleStringProperty(null);
+        this.type = new SimpleObjectProperty<OperatingSystem>(OperatingSystem.OTHER);
         this.version = new SimpleStringProperty(null);
         this.arch = new SimpleStringProperty(null);
 
-        Task<String[]> task = new OperatingSystemTask();
+        Task<Object[]> task = new OperatingSystemTask();
 
         task.setOnSucceeded(v -> {
-            String[] info = (String[]) v.getSource().getValue();
+            Object[] info = (Object[]) v.getSource().getValue();
 
-            this.name = new SimpleStringProperty(info[0]);
-            this.version = new SimpleStringProperty(info[1]);
-            this.arch = new SimpleStringProperty(info[2]);
+            this.type = new SimpleObjectProperty<OperatingSystem>((OperatingSystem) info[0]);
+            this.version = new SimpleStringProperty((String) info[1]);
+            this.arch = new SimpleStringProperty((String) info[2]);
         });
 
         Thread thread = new Thread(task);
@@ -66,12 +79,12 @@ public class OperatingSystemProvider extends BaseProvider {
 
     // todo doc for getters and setters
 
-    public String getName() {
-        return name.get();
+    public OperatingSystem getType() {
+        return type.get();
     }
 
-    public ReadOnlyStringProperty nameProperty() {
-        return name;
+    public ReadOnlyObjectProperty<OperatingSystem> typeProperty() {
+        return type;
     }
 
     public String getVersion() {

@@ -21,9 +21,10 @@ public class OperatingSystemProviderTest {
 
     @Test
     @TestInJfxThread
-    public void testName() {
-        String name = provider.getName();
-        assertThat(name.length() > 0, is(true));
+    public void testType() {
+        OperatingSystem type = provider.getType();
+        assertThat(type, is(instanceOf(OperatingSystem.class)));
+        assertThat(type.getName(), is(notNullValue()));
     }
 
     @Test

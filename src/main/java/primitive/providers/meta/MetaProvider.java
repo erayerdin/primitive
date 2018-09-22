@@ -45,9 +45,7 @@ public class MetaProvider extends BaseProvider {
     }
 
     @Override
-    protected void uninit() {
-
-    }
+    protected void uninit() {}
 
     public static MetaProvider getInstance() {
         if (instance == null)

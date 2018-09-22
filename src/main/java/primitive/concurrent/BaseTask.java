@@ -97,6 +97,6 @@ public abstract class BaseTask <V> extends Task<V> {
         super.updateValue(value);
         log.debug(String.format("Task<%s> Value: %s",
                 this.getClass().getCanonicalName(),
-                value.toString()));
+                value));
     }
 }
