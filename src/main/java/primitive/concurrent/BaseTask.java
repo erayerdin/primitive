@@ -1,8 +1,11 @@
 package primitive.concurrent;
 
+import com.google.inject.Guice;
+import com.google.inject.Injector;
 import javafx.concurrent.Task;
 import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import primitive.providers.ProviderModule;
+import primitive.providers.logging.LoggingProvider;
 
 // todo doc
 public abstract class BaseTask <V> extends Task<V> {
@@ -10,7 +13,10 @@ public abstract class BaseTask <V> extends Task<V> {
     protected volatile static Log log;
 
     public BaseTask() {
-        log = LogFactory.getLog(this.getClass());
+        Injector injector = Guice.createInjector(new ProviderModule());
+        LoggingProvider provider = injector.getInstance(LoggingProvider.class);
+
+        log = provider.getLogger(this.getClass());
         log.info(String.format("Initializing Task<%s>...", this.getClass().getCanonicalName()));
     }
 
