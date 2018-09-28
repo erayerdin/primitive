@@ -4,8 +4,7 @@ import com.google.inject.Guice;
 import com.google.inject.Injector;
 import javafx.concurrent.Service;
 import org.apache.commons.logging.Log;
-import primitive.providers.ProviderModule;
-import primitive.providers.logging.LoggingProvider;
+import primitive.ApplicationModule;
 
 // todo doc
 public abstract class BaseService <V> extends Service<V> {
@@ -13,74 +12,73 @@ public abstract class BaseService <V> extends Service<V> {
     protected volatile static Log log;
 
     public BaseService() {
-        Injector injector = Guice.createInjector(new ProviderModule());
-        LoggingProvider provider = injector.getInstance(LoggingProvider.class);
+        Injector injector = Guice.createInjector(ApplicationModule.getInstance());
 
-        log = provider.getLogger(this.getClass());
-        log.info(String.format("Initializing Service<%s>...", this.getClass().getCanonicalName()));
+        log = injector.getInstance(Log.class);
+        log.info(String.format("Initializing Service: %s...", this.getClass().getCanonicalName()));
     }
 
     @Override
     protected void ready() {
         super.ready();
-        log.info(String.format("Service<%s> is ready.", this.getClass().getCanonicalName()));
+        log.info("Service is ready.");
     }
 
     @Override
     protected void scheduled() {
         super.scheduled();
-        log.debug(String.format("Service<%s> has been scheduled.", this.getClass().getCanonicalName()));
+        log.debug("Service has been scheduled.");
     }
 
     @Override
     protected void running() {
-        log.info(String.format("Service<%s> is running...", this.getClass().getCanonicalName()));
+        log.info("Service is running...");
         super.running();
     }
 
     @Override
     protected void succeeded() {
         super.succeeded();
-        log.info(String.format("Service<%s has succeeded.", this.getClass().getCanonicalName()));
+        log.info("Service has succeeded.");
     }
 
     @Override
     protected void cancelled() {
         super.cancelled();
-        log.warn(String.format("Service<%s> has been cancelled.", this.getClass().getCanonicalName()));
+        log.warn("Service has been cancelled.");
     }
 
     @Override
     protected void failed() {
         super.failed();
-        log.error(String.format("Service<%s> has failed due to %s. Message:\n%s",
+        log.error(String.format("Service has failed due to %s. Message:\n%s",
                 this.getClass().getCanonicalName(),
                 this.getException().getClass().getCanonicalName(),
-                this.getException().getMessage()));
+                this.getException().getMessage())
+        );
     }
 
     @Override
     public boolean cancel() {
-        log.warn(String.format("Service<%s> is being cancelled.",
-                this.getClass().getCanonicalName()));
+        log.warn("Service is being cancelled.");
         return super.cancel();
     }
 
     @Override
     public void restart() {
         super.restart();
-        log.info(String.format("Service<%s> has been restarted.", this.getClass().getCanonicalName()));
+        log.info("Service has been restarted.");
     }
 
     @Override
     public void reset() {
         super.reset();
-        log.info(String.format("Service<%s> has been reset.", this.getClass().getCanonicalName()));
+        log.info("Service has been reset.");
     }
 
     @Override
     public void start() {
         super.start();
-        log.info(String.format("Service<%s> has started.", this.getClass().getCanonicalName()));
+        log.info("Service has started.");
     }
 }
