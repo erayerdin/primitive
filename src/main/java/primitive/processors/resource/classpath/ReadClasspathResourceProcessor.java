@@ -11,6 +11,8 @@ import primitive.processors.resource.ReadResourceProcessor;
 import primitive.processors.resource.listeners.ResourcePathSizeListener;
 import primitive.processors.system.OperatingSystemProcessor;
 
+import java.io.*;
+import java.nio.charset.Charset;
 import java.nio.file.Path;
 
 // todo doc
@@ -24,6 +26,8 @@ public class ReadClasspathResourceProcessor implements ReadResourceProcessor {
     private StringProperty resourcePath;
     private ChangeListener<String> resourcePathSizeListener;
 
+    private int bufferSize;
+
     private byte[] content;
 
     @Inject
@@ -36,6 +40,8 @@ public class ReadClasspathResourceProcessor implements ReadResourceProcessor {
         this.workDone = new SimpleLongProperty();
         this.totalWork = new SimpleLongProperty();
         this.resourcePath = new SimpleStringProperty();
+
+        this.bufferSize = 8 * 1024;
     }
 
     @Override
@@ -60,16 +66,43 @@ public class ReadClasspathResourceProcessor implements ReadResourceProcessor {
     }
 
     @Override
-    public byte[] readToBytes() {
+    public byte[] readToBytes() throws IOException {
         if (this.content != null)
             return this.content;
 
-        return new byte[0];
+        InputStream stream = ClassLoader.getSystemResourceAsStream(this.getResourcePath());
+        BufferedInputStream buffer = new BufferedInputStream(stream, this.getBufferSize());
+
+        byte[] bytes = new byte[(int) this.getTotalWork()];
+
+        int b, counter = 0;
+        while ((b = buffer.read()) != -1) {
+            bytes[counter] = (byte) b;
+            counter++;
+        }
+
+        buffer.close();
+        stream.close();
+
+        this.content = bytes;
+        return this.content;
     }
 
     @Override
-    public String readToString() {
-        return null;
+    public String readToString(Charset charset) throws IOException {
+        this.readToBytes();
+
+        return new String(this.content, charset);
+    }
+
+    @Override
+    public int getBufferSize() {
+        return this.bufferSize;
+    }
+
+    @Override
+    public void setBufferSize(int size) {
+        this.bufferSize = size;
     }
 
     @Override
