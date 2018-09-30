@@ -37,8 +37,8 @@ public class ReadClasspathResourceProcessor implements ReadResourceProcessor {
 
         this.operatingSystemProcessor = operatingSystemProcessor;
 
-        this.workDone = new SimpleLongProperty();
-        this.totalWork = new SimpleLongProperty();
+        this.workDone = new SimpleLongProperty(0);
+        this.totalWork = new SimpleLongProperty(0);
         this.resourcePath = new SimpleStringProperty();
 
         this.bufferSize = 8 * 1024;
@@ -75,10 +75,13 @@ public class ReadClasspathResourceProcessor implements ReadResourceProcessor {
 
         byte[] bytes = new byte[(int) this.getTotalWork()];
 
-        int b, counter = 0;
+        int b;
+        long counter = 0;
+        this.setWorkDone(0L);
         while ((b = buffer.read()) != -1) {
-            bytes[counter] = (byte) b;
+            bytes[(int) counter] = (byte) b; // todo might lead to integer overflow since we cast long to int
             counter++;
+            this.setWorkDone(counter);
         }
 
         buffer.close();

@@ -49,11 +49,19 @@ public class ReadClasspathResourceProcessorTest {
     @Test
     @TestInJfxThread
     public void testReadBytesArray() throws IOException {
-        this.processor.resourcePathProperty().setValue("random.txt"); // i know it is redundant
-        // but anyways
+        this.processor.resourcePathProperty().setValue("random.txt");
         byte[] bytes = this.processor.readToBytes();
 
         assertThat(bytes.length, is(equalTo(6)));
+    }
+
+    @Test
+    public void testReadWorkDone() throws IOException {
+        this.processor.resourcePathProperty().setValue("random.txt");
+
+        assertThat(this.processor.workDoneProperty().get(), is(equalTo(0L)));
+        this.processor.readToBytes();
+        assertThat(this.processor.workDoneProperty().greaterThan(0L).get(), is(true));
     }
 
     @Test
