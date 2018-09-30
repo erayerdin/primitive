@@ -11,10 +11,10 @@ import java.io.InputStream;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
-public class ResourcePathSizeListener extends BaseChangeListener<String> {
+public class ResourceSizeListener extends BaseChangeListener<String> {
     private ReadResourceProcessor readResourceProcessor;
 
-    public ResourcePathSizeListener(ReadResourceProcessor readResourceProcessor) {
+    public ResourceSizeListener(ReadResourceProcessor readResourceProcessor) {
         super();
         this.readResourceProcessor = readResourceProcessor;
     }

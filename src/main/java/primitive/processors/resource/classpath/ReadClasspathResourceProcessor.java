@@ -8,7 +8,7 @@ import javafx.beans.property.StringProperty;
 import javafx.beans.value.ChangeListener;
 import org.apache.commons.logging.Log;
 import primitive.processors.resource.ReadResourceProcessor;
-import primitive.processors.resource.listeners.ResourcePathSizeListener;
+import primitive.processors.resource.listeners.ResourceSizeListener;
 import primitive.processors.system.OperatingSystemProcessor;
 
 import java.io.*;
@@ -18,7 +18,6 @@ import java.nio.file.Path;
 // todo doc
 public class ReadClasspathResourceProcessor implements ReadResourceProcessor {
     private Log log;
-    private OperatingSystemProcessor operatingSystemProcessor;
 
     private LongProperty workDone;
     private LongProperty totalWork;
@@ -31,11 +30,9 @@ public class ReadClasspathResourceProcessor implements ReadResourceProcessor {
     private byte[] content;
 
     @Inject
-    public ReadClasspathResourceProcessor(Log log, OperatingSystemProcessor operatingSystemProcessor) {
+    public ReadClasspathResourceProcessor(Log log) {
         this.log = log;
         log.info(String.format("Initializing %s...", this.getClass().getName()));
-
-        this.operatingSystemProcessor = operatingSystemProcessor;
 
         this.workDone = new SimpleLongProperty(0);
         this.totalWork = new SimpleLongProperty(0);
@@ -50,7 +47,7 @@ public class ReadClasspathResourceProcessor implements ReadResourceProcessor {
 
         log.info("Adding listeners...");
         log.debug("Adding ResourcePathSizeListener...");
-        this.resourcePathSizeListener = new ResourcePathSizeListener(this);
+        this.resourcePathSizeListener = new ResourceSizeListener(this);
         this.resourcePathProperty().addListener(this.resourcePathSizeListener);
     }
 
