@@ -25,6 +25,7 @@ public class SystemProcessor implements OperatingSystemProcessor, VirtualMachine
     @Inject
     public SystemProcessor(Log log) {
         this.log = log;
+        log.info(String.format("Initializing %s...", this.getClass().getName()));
         this.type = new SimpleObjectProperty<>(OperatingSystemType.UNKNOWN);
         this.version = new SimpleStringProperty(null);
         this.arch = new SimpleStringProperty(null);
@@ -32,16 +33,18 @@ public class SystemProcessor implements OperatingSystemProcessor, VirtualMachine
 
     @Override
     public void setUp() {
+        log.info(String.format("Setting up %s...", this.getClass().getName()));
         this.initializeTasks();
     }
 
     @Override
     public void tearDown() {
-
+        log.info(String.format("Tearing down %s...", this.getClass().getName()));
     }
 
     // todo doc
     private void initializeTasks() {
+        log.info("Initializing tasks...");
         this.initializeOperatingSystemTask();
         this.initializeVirtualMachineTask();
     }
