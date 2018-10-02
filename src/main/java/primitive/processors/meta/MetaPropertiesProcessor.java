@@ -46,7 +46,9 @@ public class MetaPropertiesProcessor implements MetaProcessor {
     }
 
     @Override
-    public void tearDown() {}
+    public void tearDown() {
+        this.readResourceProcessor.tearDown();
+    }
 
     private void initializeProperties() throws IOException {
         log.debug(String.format("Initializing from classpath resource: %s", getPropertiesPath()));
