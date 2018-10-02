@@ -25,7 +25,7 @@ public class SystemProcessor implements OperatingSystemProcessor, VirtualMachine
     @Inject
     public SystemProcessor(Log log) {
         this.log = log;
-        log.info(String.format("Initializing %s...", this.getClass().getName()));
+        log.info(String.format("Initializing Processor<%s>...", this.getClass().getName()));
         this.type = new SimpleObjectProperty<>(OperatingSystemType.UNKNOWN);
         this.version = new SimpleStringProperty(null);
         this.arch = new SimpleStringProperty(null);

@@ -32,7 +32,7 @@ public class ReadClasspathResourceProcessor implements ReadResourceProcessor {
     @Inject
     public ReadClasspathResourceProcessor(Log log) {
         this.log = log;
-        log.info(String.format("Initializing %s...", this.getClass().getName()));
+        log.info(String.format("Initializing Processor<%s>...", this.getClass().getName()));
 
         this.workDone = new SimpleLongProperty(0);
         this.totalWork = new SimpleLongProperty(0);

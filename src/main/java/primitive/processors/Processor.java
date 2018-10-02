@@ -1,6 +1,8 @@
 package primitive.processors;
 
+import java.io.IOException;
+
 public interface Processor {
-    void setUp();
+    void setUp() throws IOException;
     void tearDown();
 }
