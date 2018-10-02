@@ -23,7 +23,11 @@ public class MetaProcessorTest {
     public static void setUpClass() throws IOException, InterruptedException {
         Injector injector = Guice.createInjector(ApplicationModule.getInstance());
         processor = injector.getInstance(MetaProcessor.class);
-        processor.setUp();
+        try {
+            processor.setUp();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         Thread.sleep(500);
     }
 

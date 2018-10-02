@@ -5,10 +5,10 @@ import com.google.inject.Singleton;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import org.apache.commons.logging.Log;
-import primitive.processors.Processor;
 import primitive.processors.resource.ReadResourceProcessor;
 import primitive.processors.resource.classpath.ReadClasspathResource;
 
+import javax.annotation.PostConstruct;
 import java.io.IOException;
 import java.io.Reader;
 import java.io.StringReader;
@@ -38,15 +38,15 @@ public class MetaPropertiesProcessor implements MetaProcessor {
     }
 
     @Override
-    public void setUp() throws IOException {
+    @PostConstruct
+    public void setUp() throws Exception {
         log.info(String.format("Setting up Processor<%s>...", this.getClass().getName()));
 
-        this.readResourceProcessor.setUp();
         this.initializeProperties();
     }
 
     @Override
-    public void tearDown() {
+    public void tearDown() throws Exception {
         this.readResourceProcessor.tearDown();
     }
 

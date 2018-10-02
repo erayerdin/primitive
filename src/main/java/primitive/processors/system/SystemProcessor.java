@@ -32,13 +32,13 @@ public class SystemProcessor implements OperatingSystemProcessor, VirtualMachine
     }
 
     @Override
-    public void setUp() {
+    public void setUp() throws Exception {
         log.info(String.format("Setting up %s...", this.getClass().getName()));
         this.initializeTasks();
     }
 
     @Override
-    public void tearDown() {
+    public void tearDown() throws Exception {
         log.info(String.format("Tearing down %s...", this.getClass().getName()));
     }
 

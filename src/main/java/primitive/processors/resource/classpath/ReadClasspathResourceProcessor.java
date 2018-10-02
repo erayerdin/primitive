@@ -9,8 +9,8 @@ import javafx.beans.value.ChangeListener;
 import org.apache.commons.logging.Log;
 import primitive.processors.resource.ReadResourceProcessor;
 import primitive.processors.resource.listeners.ResourceSizeListener;
-import primitive.processors.system.OperatingSystemProcessor;
 
+import javax.annotation.PostConstruct;
 import java.io.*;
 import java.nio.charset.Charset;
 import java.nio.file.Path;
@@ -42,7 +42,8 @@ public class ReadClasspathResourceProcessor implements ReadResourceProcessor {
     }
 
     @Override
-    public void setUp() {
+    @PostConstruct
+    public void setUp() throws Exception {
         log.info(String.format("Setting up %s...", this.getClass().getName()));
 
         log.info("Adding listeners...");
@@ -52,7 +53,7 @@ public class ReadClasspathResourceProcessor implements ReadResourceProcessor {
     }
 
     @Override
-    public void tearDown() {
+    public void tearDown() throws Exception {
         log.info(String.format("Tearing down %s...", this.getClass().getName()));
 
         log.info("Removing listeners...");

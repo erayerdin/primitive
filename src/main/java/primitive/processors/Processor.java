@@ -1,8 +1,10 @@
 package primitive.processors;
 
-import java.io.IOException;
-
+// todo doc
 public interface Processor {
-    void setUp() throws IOException;
-    void tearDown();
+    // todo doc
+    void setUp() throws Exception;
+
+    // todo doc
+    void tearDown() throws Exception;
 }
