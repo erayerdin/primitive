@@ -1,7 +1,7 @@
 package primitive;
 
 import com.google.inject.AbstractModule;
-import primitive.processors.ProcessorModule;
+import primitive.initializer.InitializerModule;
 
 public class ApplicationModule extends AbstractModule {
     private volatile static ApplicationModule instance = null;
@@ -11,7 +11,7 @@ public class ApplicationModule extends AbstractModule {
     @Override
     protected void configure() {
         super.configure();
-        install(new ProcessorModule());
+        install(new InitializerModule());
     }
 
     public static ApplicationModule getInstance() {
