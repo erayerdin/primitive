@@ -2,11 +2,14 @@ package primitive.initializer;
 
 import com.google.inject.AbstractModule;
 import com.google.inject.MembersInjector;
+import com.google.inject.Provides;
 import com.google.inject.TypeLiteral;
 import com.google.inject.matcher.AbstractMatcher;
 import com.google.inject.spi.InjectionListener;
 import com.google.inject.spi.TypeEncounter;
 import com.google.inject.spi.TypeListener;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 
 class InitializerInjectionListener implements InjectionListener<Initializer> {
     @Override
@@ -37,10 +40,21 @@ class InitializerMatcher extends AbstractMatcher<TypeLiteral> {
 
 // todo doc
 public class InitializerModule extends AbstractModule {
+    private volatile Log log;
+
     @Override
     protected void configure() {
         super.configure();
 
         bindListener(new InitializerMatcher(), new InitializerTypeListener());
+    }
+
+    @Provides
+    Log provideLog() {
+        if (this.log != null)
+            return this.log;
+
+        this.log = LogFactory.getLog("app");
+        return this.log;
     }
 }
