@@ -1,8 +1,9 @@
 package primitive;
 
 import com.google.inject.AbstractModule;
-import primitive.initializer.InitializerModule;
+import primitive.providers.ProviderModule;
 
+// todo doc
 public class ApplicationModule extends AbstractModule {
     private volatile static ApplicationModule instance = null;
 
@@ -11,7 +12,7 @@ public class ApplicationModule extends AbstractModule {
     @Override
     protected void configure() {
         super.configure();
-        install(new InitializerModule());
+        install(new ProviderModule());
     }
 
     public static ApplicationModule getInstance() {
