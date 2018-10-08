@@ -7,7 +7,7 @@ import primitive.providers.ProviderModule;
 public class ApplicationModule extends AbstractModule {
     private volatile static ApplicationModule instance = null;
 
-    private ApplicationModule() {}
+    protected ApplicationModule() {}
 
     @Override
     protected void configure() {
