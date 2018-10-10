@@ -7,11 +7,11 @@ import org.apache.commons.logging.Log;
 import primitive.ApplicationModule;
 
 // todo doc
-public abstract class BaseService <V> extends Service<V> {
+public abstract class AbstractService<V> extends Service<V> {
     // todo doc
     protected volatile static Log log;
 
-    public BaseService() {
+    public AbstractService() {
         Injector injector = Guice.createInjector(ApplicationModule.getInstance());
 
         log = injector.getInstance(Log.class);

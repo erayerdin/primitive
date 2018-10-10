@@ -7,11 +7,11 @@ import org.apache.commons.logging.Log;
 import primitive.ApplicationModule;
 
 // todo doc
-public abstract class BaseTask <V> extends Task<V> {
+public abstract class AbstractTask<V> extends Task<V> {
     // todo doc
     protected volatile static Log log;
 
-    public BaseTask() {
+    public AbstractTask() {
         Injector injector = Guice.createInjector(ApplicationModule.getInstance());
 
         log = injector.getInstance(Log.class);

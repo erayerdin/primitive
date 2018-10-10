@@ -1,6 +1,7 @@
 package primitive;
 
 import com.google.inject.AbstractModule;
+import primitive.resource.ResourceModule;
 import primitive.providers.ProviderModule;
 
 // todo doc
@@ -13,6 +14,7 @@ public class ApplicationModule extends AbstractModule {
     protected void configure() {
         super.configure();
         install(new ProviderModule());
+        install(new ResourceModule());
     }
 
     public static ApplicationModule getInstance() {
