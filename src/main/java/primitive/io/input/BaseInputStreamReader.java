@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package primitive.resource.input;
+package primitive.io.input;
 
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.ReadOnlyIntegerProperty;
@@ -25,13 +25,11 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.nio.charset.Charset;
 import java.nio.charset.CharsetDecoder;
-import java.util.Arrays;
 
 // todo doc
 public class BaseInputStreamReader extends InputStreamReader {
     private IntegerProperty workDone;
     private IntegerProperty totalWork;
-
 
     public BaseInputStreamReader(InputStream in) throws IOException {
         super(in);

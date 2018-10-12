@@ -85,6 +85,13 @@
       <version>4.2.1</version>
     </dependency>
 
+    <!-- https://mvnrepository.com/artifact/com.google.inject.extensions/guice-throwingproviders -->
+    <dependency>
+      <groupId>com.google.inject.extensions</groupId>
+      <artifactId>guice-throwingproviders</artifactId>
+      <version>4.2.1</version>
+    </dependency>
+
     <!-- https://mvnrepository.com/artifact/junit/junit -->
     <dependency>
       <groupId>junit</groupId>

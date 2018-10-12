@@ -1,4 +1,4 @@
-package primitive.resource.input;
+package primitive.io.input;
 
 import org.junit.After;
 import org.junit.Before;

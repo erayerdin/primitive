@@ -1,8 +1,10 @@
 package primitive;
 
 import com.google.inject.AbstractModule;
-import primitive.resource.ResourceModule;
-import primitive.providers.ProviderModule;
+import primitive.io.path.PathModule;
+import primitive.log.LogModule;
+import primitive.meta.MetaModule;
+import primitive.system.SystemModule;
 
 // todo doc
 public class ApplicationModule extends AbstractModule {
@@ -13,8 +15,10 @@ public class ApplicationModule extends AbstractModule {
     @Override
     protected void configure() {
         super.configure();
-        install(new ProviderModule());
-        install(new ResourceModule());
+        install(new LogModule());
+        install(new SystemModule());
+        install(new MetaModule());
+        install(new PathModule());
     }
 
     public static ApplicationModule getInstance() {
