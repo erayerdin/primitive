@@ -1,3 +1,7 @@
+# ABANDONED
+
+This project is abandoned because I am no longer interested in developing it. However, there's still a good alternative if you're using Kotlin, which is [TornadoFX](https://tornadofx.io/).
+
 # Primitive FX MVC
 
 ![](https://img.shields.io/badge/groupId-com.erayerdin-blue.svg?style=flat-square)
